@@ -1,7 +1,7 @@
-import { LoginValues, postLogin } from "@/services/authData";
+import { LoginValues, postLogin } from "@/services/loginData";
 import { useMutation } from "@tanstack/react-query";
 
-export const useAuth = () => {
+export const useLogin = () => {
   const { error, mutate, isPending, data } = useMutation({
     mutationFn: postLogin,
   });

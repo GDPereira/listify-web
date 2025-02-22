@@ -8,7 +8,7 @@ import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import z from "zod";
-import { useAuth } from "./_hooks/useAuth";
+import { useLogin } from "./_hooks/useLogin";
 
 const LoginSchema = z.object({
   email: z.string().email("Enter a valid email"),
@@ -21,7 +21,7 @@ const rule = createSchemaFieldRule(LoginSchema);
 
 export default function LoginPage() {
   const [form] = Form.useForm<LoginInputs>();
-  const { login, isLoading, error, data } = useAuth();
+  const { login, isLoading, error, data } = useLogin();
   const { setError } = useErrorStore();
   const router = useRouter();
 
@@ -52,7 +52,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-svh w-full">
+    <div className="flex items-center justify-center h-dvh w-full">
       <Form name="login" className="w-4/12" form={form} onFinish={onFinish}>
         <Form.Item name={"email"} rules={[rule]}>
           <Input type="email" placeholder="Email" />
