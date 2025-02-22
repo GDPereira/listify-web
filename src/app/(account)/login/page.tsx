@@ -1,10 +1,8 @@
 "use client";
 
-import { useErrorStore } from "@/store/error";
 import "@ant-design/v5-patch-for-react-19";
 import { Button, Form, Input } from "antd";
 import { createSchemaFieldRule } from "antd-zod";
-import { isAxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import z from "zod";
@@ -21,23 +19,8 @@ const rule = createSchemaFieldRule(LoginSchema);
 
 export default function LoginPage() {
   const [form] = Form.useForm<LoginInputs>();
-  const { login, isLoading, error, data } = useLogin();
-  const { setError } = useErrorStore();
+  const { login, isLoading, data } = useLogin();
   const router = useRouter();
-
-  useEffect(() => {
-    if (!error) {
-      return;
-    }
-
-    if (isAxiosError(error)) {
-      setError({
-        message: error.response?.data.message,
-        placement: "bottomRight",
-      });
-      return;
-    }
-  }, [error]);
 
   useEffect(() => {
     if (!data) {

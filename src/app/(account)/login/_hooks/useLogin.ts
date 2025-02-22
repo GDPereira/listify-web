@@ -2,7 +2,7 @@ import { LoginValues, postLogin } from "@/services/loginData";
 import { useMutation } from "@tanstack/react-query";
 
 export const useLogin = () => {
-  const { error, mutate, isPending, data } = useMutation({
+  const { mutate, isPending, data } = useMutation({
     mutationFn: postLogin,
   });
 
@@ -13,7 +13,6 @@ export const useLogin = () => {
   return {
     login,
     isLoading: isPending,
-    error,
     data,
   };
 };
