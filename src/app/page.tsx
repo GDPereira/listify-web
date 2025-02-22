@@ -1,25 +1,24 @@
 "use client";
 
 import { useCheckAuth } from "@/hooks/useCheckAuth";
-import { Spin } from "antd";
-import { useEffect } from "react";
 import "@ant-design/v5-patch-for-react-19";
-import { redirect } from "next/navigation";
+import { Spin } from "antd";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Index() {
-  const { data, error, isLoading } = useCheckAuth();
+  const { data, isLoading } = useCheckAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    if ((!data && !error) || isLoading) {
+    if (isLoading) {
       return;
     }
 
     if (data?.success) {
-      return redirect("/home");
+      router.push("/home");
     }
-
-    return redirect("/login");
-  }, [data, error, isLoading]);
+  }, [data, isLoading]);
 
   return (
     <div className="items-center justify-center flex w-full h-dvh">
