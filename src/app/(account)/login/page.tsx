@@ -1,7 +1,7 @@
 "use client";
 
 import "@ant-design/v5-patch-for-react-19";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Typography } from "antd";
 import { createSchemaFieldRule } from "antd-zod";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -34,8 +34,12 @@ export default function LoginPage() {
     login(values);
   };
 
+  const onClickSignup = () => {
+    router.push("/signup");
+  };
+
   return (
-    <div className="flex items-center justify-center h-dvh w-full">
+    <div className="flex items-center justify-center h-dvh w-full flex-col">
       <Form name="login" className="w-4/12" form={form} onFinish={onFinish}>
         <Form.Item name={"email"} rules={[rule]}>
           <Input type="email" placeholder="Email" />
@@ -55,6 +59,8 @@ export default function LoginPage() {
           </Button>
         </Form.Item>
       </Form>
+      <Typography.Text>Don't have an account?</Typography.Text>
+      <Typography.Link onClick={onClickSignup}>Signup now!</Typography.Link>
     </div>
   );
 }
