@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@ant-design/v5-patch-for-react-19";
 import { QueryProvider } from "@/providers/queryProvider";
-import { ErrorProvider } from "@/providers/errorProvider";
+import { NotificationProvider } from "@/providers/notificationProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +24,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ErrorProvider>
+        <NotificationProvider>
           <QueryProvider>{children}</QueryProvider>
-        </ErrorProvider>
+        </NotificationProvider>
       </body>
     </html>
   );
