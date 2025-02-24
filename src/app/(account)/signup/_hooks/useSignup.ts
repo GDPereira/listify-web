@@ -1,5 +1,4 @@
-import { LoginValues } from "@/services/loginData";
-import { postSignup } from "@/services/signupData";
+import { postSignup, SignupValues } from "@/services/signupData";
 import { useMutation } from "@tanstack/react-query";
 
 export const useSignup = () => {
@@ -7,7 +6,7 @@ export const useSignup = () => {
     mutationFn: postSignup,
   });
 
-  const signup = (formValues: LoginValues) => {
+  const signup = (formValues: SignupValues) => {
     return mutate(formValues);
   };
 
