@@ -4,7 +4,6 @@ import "@ant-design/v5-patch-for-react-19";
 import { Button, Form, Input, Typography } from "antd";
 import { createSchemaFieldRule } from "antd-zod";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import z from "zod";
 import { useLogin } from "./_hooks/useLogin";
 
@@ -19,16 +18,8 @@ const rule = createSchemaFieldRule(LoginSchema);
 
 export default function LoginPage() {
   const [form] = Form.useForm<LoginInputs>();
-  const { login, isLoading, data } = useLogin();
+  const { login, isLoading } = useLogin();
   const router = useRouter();
-
-  useEffect(() => {
-    if (!data) {
-      return;
-    }
-
-    router.push("/home");
-  }, [data]);
 
   const onFinish = async (values: LoginInputs) => {
     login(values);
